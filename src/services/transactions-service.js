@@ -15,7 +15,6 @@ const getAllTransaction = async (userId) => {
 
 const saveTransaction = (userId, search, response) => {
   const queryInsert = `INSERT INTO public.transactions (user_id, search, response) VALUES(${userId}, '${search}', '${response}');`;
-  console.log("Query", queryInsert);
   pool.query(queryInsert, (error, results) => {
     if (error) {
       console.log(error);

@@ -26,7 +26,20 @@ const updateToken = (token) => {
   );
 };
 
+const validateToken = async (token) => {
+  const response = await pool
+    .query(`SELECT is_valid FROM public.tokens WHERE token='${token}';`)
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((error) => {
+      return "Error al conectar con la base de datos";
+    });
+  return response;
+};
+
 module.exports = {
   saveToken,
   updateToken,
+  validateToken,
 };
